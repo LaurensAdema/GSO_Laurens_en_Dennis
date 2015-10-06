@@ -51,6 +51,7 @@ public class Contact {
             return false;
         }
         appointments.add(a);
+        a.addContact(this);
         return true;
     }
 

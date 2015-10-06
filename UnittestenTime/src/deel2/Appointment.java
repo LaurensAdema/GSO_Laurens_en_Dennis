@@ -77,24 +77,16 @@ public class Appointment {
         boolean result = false;
         if (c != null)
         {
-            boolean already = false;
-            for (Contact contact : contacts)
-            {
-                if (contact.equals(c))
-                {
-                    already = true;
-                    break;
-                }
-            }
-            if (!already)
+            if (!contacts.contains(c))
             {
                 boolean conflict = false;
+                Iterator<Appointment> appointments = c.appointments();
 
-                while (c.appointments().hasNext())
+                while (appointments.hasNext())
                 {
-                    Appointment appointment = c.appointments().next();
+                    Appointment appointment = appointments.next();
 
-                    if (appointment.timeSpan.intersectionWith(this.getTimeSpan()) != null)
+                    if (appointment.getTimeSpan().intersectionWith(this.getTimeSpan()) != null)
                     {
                         conflict = true;
                         break;
@@ -104,6 +96,7 @@ public class Appointment {
                 if (!conflict)
                 {
                     contacts.add(c);
+                    c.addAppointment(this);
                     result = true;
                 }
             }
@@ -118,16 +111,10 @@ public class Appointment {
      */
     public void removeContact(Contact c)
     {
-        if (c != null)
+        if (c == null)
         {
-            for (Contact contact : contacts)
-            {
-                if (contact.equals(c))
-                {
-                    contacts.remove(contact);
-                    break;
-                }
-            }
+            throw new NullPointerException("contact kan niet leeg zijn");
         }
+        contacts.remove(c);
     }
 }

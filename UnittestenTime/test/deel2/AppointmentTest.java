@@ -92,9 +92,12 @@ public class AppointmentTest {
     {
         System.out.println("addContact");
         contactAppointment = new Appointment("Bobbigheid", new TimeSpan(new Time(2015, 10, 10, 10, 10), new Time(2015, 10, 10, 11, 11)));
+        Appointment contactAppointment2 = new Appointment("Bobbigheid", new TimeSpan(new Time(2015, 10, 10, 10, 9), new Time(2015, 10, 10, 11, 1)));
         Contact Bob = new Contact("Bob");
+
         assertTrue("Adding contact failed, which it shouldnt.", contactAppointment.addContact(Bob));
-        assertFalse("Adding contact succeeded, which it shouldnt.", contactAppointment.addContact(Bob));
+        //Bob.addAppointment(contactAppointment);
+        assertFalse("Adding contact succeeded, which it shouldnt.", contactAppointment2.addContact(Bob));
     }
 
     /**
@@ -140,6 +143,14 @@ public class AppointmentTest {
         }
 
         assertFalse("Het contact is niet verwijderd", result);
+        try
+        {
+            a.removeContact(null);
+            assertFalse("contact can't be null",true);
+        } catch (Exception e)
+        {
+            //should error
+        }
     }
 
 }

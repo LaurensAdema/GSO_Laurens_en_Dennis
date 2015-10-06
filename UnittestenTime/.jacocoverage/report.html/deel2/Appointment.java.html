@@ -77,38 +77,31 @@ public class Appointment {
 <span class="fc" id="L77">        boolean result = false;</span>
 <span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (c != null)</span>
         {
-<span class="fc" id="L80">            boolean already = false;</span>
-<span class="fc bfc" id="L81" title="All 2 branches covered.">            for (Contact contact : contacts)</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            if (!contacts.contains(c))</span>
             {
-<span class="fc bfc" id="L83" title="All 2 branches covered.">                if (contact.equals(c))</span>
-                {
-<span class="fc" id="L85">                    already = true;</span>
-<span class="fc" id="L86">                    break;</span>
-                }
-<span class="fc" id="L88">            }</span>
-<span class="fc bfc" id="L89" title="All 2 branches covered.">            if (!already)</span>
-            {
-<span class="fc" id="L91">                boolean conflict = false;</span>
+<span class="fc" id="L82">                boolean conflict = false;</span>
+<span class="fc" id="L83">                Iterator&lt;Appointment&gt; appointments = c.appointments();</span>
 
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">                while (c.appointments().hasNext())</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                while (appointments.hasNext())</span>
                 {
-<span class="nc" id="L95">                    Appointment appointment = c.appointments().next();</span>
+<span class="fc" id="L87">                    Appointment appointment = appointments.next();</span>
 
-<span class="nc bnc" id="L97" title="All 2 branches missed.">                    if (appointment.timeSpan.intersectionWith(this.getTimeSpan()) != null)</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">                    if (appointment.getTimeSpan().intersectionWith(this.getTimeSpan()) != null)</span>
                     {
-<span class="nc" id="L99">                        conflict = true;</span>
-<span class="nc" id="L100">                        break;</span>
+<span class="fc" id="L91">                        conflict = true;</span>
+<span class="fc" id="L92">                        break;</span>
                     }
-<span class="nc" id="L102">                }</span>
+<span class="fc" id="L94">                }</span>
 
-<span class="pc bpc" id="L104" title="1 of 2 branches missed.">                if (!conflict)</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">                if (!conflict)</span>
                 {
-<span class="fc" id="L106">                    contacts.add(c);</span>
-<span class="fc" id="L107">                    result = true;</span>
+<span class="fc" id="L98">                    contacts.add(c);</span>
+<span class="fc" id="L99">                    c.addAppointment(this);</span>
+<span class="fc" id="L100">                    result = true;</span>
                 }
             }
         }
-<span class="fc" id="L111">        return result;</span>
+<span class="fc" id="L104">        return result;</span>
     }
 
     /**
@@ -118,17 +111,11 @@ public class Appointment {
      */
     public void removeContact(Contact c)
     {
-<span class="pc bpc" id="L121" title="1 of 2 branches missed.">        if (c != null)</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        if (c == null)</span>
         {
-<span class="pc bpc" id="L123" title="1 of 2 branches missed.">            for (Contact contact : contacts)</span>
-            {
-<span class="pc bpc" id="L125" title="1 of 2 branches missed.">                if (contact.equals(c))</span>
-                {
-<span class="fc" id="L127">                    contacts.remove(contact);</span>
-<span class="fc" id="L128">                    break;</span>
-                }
-<span class="nc" id="L130">            }</span>
+<span class="fc" id="L116">            throw new NullPointerException(&quot;contact kan niet leeg zijn&quot;);</span>
         }
-<span class="fc" id="L132">    }</span>
+<span class="fc" id="L118">        contacts.remove(c);</span>
+<span class="fc" id="L119">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

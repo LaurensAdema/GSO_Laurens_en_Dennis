@@ -51,7 +51,8 @@ public class Contact {
 <span class="fc" id="L51">            return false;</span>
         }
 <span class="fc" id="L53">        appointments.add(a);</span>
-<span class="fc" id="L54">        return true;</span>
+<span class="fc" id="L54">        a.addContact(this);</span>
+<span class="fc" id="L55">        return true;</span>
     }
 
     /**
@@ -61,11 +62,11 @@ public class Contact {
      */
     void removeAppointment(Appointment a)
     {
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (appointments.contains(a))</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        if (appointments.contains(a))</span>
         {
-<span class="fc" id="L66">            appointments.remove(a);</span>
+<span class="fc" id="L67">            appointments.remove(a);</span>
         }
-<span class="fc" id="L68">    }</span>
+<span class="fc" id="L69">    }</span>
 
     /**
      * Geeft de afsparken terug
@@ -74,7 +75,7 @@ public class Contact {
      */
     public Iterator&lt;Appointment&gt; appointments()
     {
-<span class="fc" id="L77">        return appointments.iterator();</span>
+<span class="fc" id="L78">        return appointments.iterator();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
