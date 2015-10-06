@@ -148,5 +148,13 @@ public class TimeSpan implements ITimeSpan {
         
 <span class="pc bpc" id="L149" title="2 of 4 branches missed.">        return this.getBeginTime().equals(that.getBeginTime()) &amp;&amp; this.getEndTime().equals(that.getEndTime());</span>
     }
+
+    @Override
+    public String toString()
+    {
+<span class="fc" id="L155">        return &quot;TimeSpan{&quot; + &quot;bt=&quot; + bt + &quot;, et=&quot; + et + '}';</span>
+    }
+    
+    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

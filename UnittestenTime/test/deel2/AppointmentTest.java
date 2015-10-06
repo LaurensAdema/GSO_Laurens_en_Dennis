@@ -95,8 +95,6 @@ public class AppointmentTest {
         Contact Bob = new Contact("Bob");
         assertTrue("Adding contact failed, which it shouldnt.", contactAppointment.addContact(Bob));
         assertFalse("Adding contact succeeded, which it shouldnt.", contactAppointment.addContact(Bob));
-        // TODO review the generated test code and remove the default call to fail.
-        fail();
     }
 
     /**

@@ -14,48 +14,67 @@ import java.util.List;
  * @author laure
  */
 public class Contact {
+
     private String name;
-<span class="fc" id="L18">    private List&lt;Appointment&gt; appointments = new ArrayList();</span>
-    
+<span class="fc" id="L19">    private List&lt;Appointment&gt; appointments = new ArrayList();</span>
+
     /**
      * Maakt een nieuw contact aan.
+     *
      * @param name
      */
-<span class="fc" id="L24">    public Contact (String name){</span>
-        
-<span class="fc" id="L26">    }</span>
-    
+    public Contact(String name)
+<span class="fc" id="L27">    {</span>
+<span class="fc" id="L28">        this.name = name;</span>
+<span class="fc" id="L29">    }</span>
+
     /**
      * Geeft de naam van het contact terug.
+     *
      * @return de naam
      */
-    public String getName(){
-<span class="fc" id="L33">        return name;</span>
+    public String getName()
+    {
+<span class="fc" id="L38">        return name;</span>
     }
-    
+
     /**
      * Maakt een nieuwe afpsraak
+     *
      * @param Appointment
      * @return of het gelukt is
      */
-    boolean addAppointment (Appointment a){
-<span class="fc" id="L42">        return false;</span>
+    boolean addAppointment(Appointment a)
+    {
+<span class="fc bfc" id="L49" title="All 4 branches covered.">        if (!appointments.stream().noneMatch((appointment) -&gt; (appointment.getTimeSpan().intersectionWith(a.getTimeSpan()) != null)))</span>
+        {
+<span class="fc" id="L51">            return false;</span>
+        }
+<span class="fc" id="L53">        appointments.add(a);</span>
+<span class="fc" id="L54">        return true;</span>
     }
-    
+
     /**
      * Verwijderd een afspaak
+     *
      * @param Appointment
      */
-    void removeAppointment (Appointment a){
-        
-<span class="fc" id="L51">    }</span>
-    
+    void removeAppointment(Appointment a)
+    {
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (appointments.contains(a))</span>
+        {
+<span class="fc" id="L66">            appointments.remove(a);</span>
+        }
+<span class="fc" id="L68">    }</span>
+
     /**
      * Geeft de afsparken terug
+     *
      * @return Lijst met afsparken
      */
-    public Iterator&lt;Appointment&gt; appointments(){
-<span class="fc" id="L58">        return appointments.iterator();</span>
+    public Iterator&lt;Appointment&gt; appointments()
+    {
+<span class="fc" id="L77">        return appointments.iterator();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

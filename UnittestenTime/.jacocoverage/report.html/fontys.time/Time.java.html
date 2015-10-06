@@ -143,5 +143,12 @@ public class Time implements ITime {
         }
 <span class="fc" id="L144">        return false;</span>
     }
+
+    @Override
+    public String toString()
+    {
+<span class="fc" id="L150">        return &quot;Time{&quot; +getYear()+&quot;-&quot;+getMonth()+&quot;-&quot;+getDay()+&quot;, &quot;+getHours()+&quot;:&quot;+getMinutes()+ &quot;}&quot;;</span>
+    }
+    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -6,6 +6,7 @@
 package deel2;
 
 import fontys.time.ITimeSpan;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,57 +15,120 @@ import java.util.List;
  * @author dennis
  */
 public class Appointment {
+
+    private ITimeSpan timeSpan;
     private String subject;
-    private List&lt;Contact&gt; contacts;
-    
+<span class="fc" id="L21">    private List&lt;Contact&gt; contacts = new ArrayList();</span>
+
     /**
      * maakt een nieuwe appointment aan
+     *
      * @param subject
      * @param timeSpan
      */
-<span class="fc" id="L25">    public Appointment(String subject, ITimeSpan timeSpan){</span>
-        
-<span class="fc" id="L27">    }</span>
-    
+    public Appointment(String subject, ITimeSpan timeSpan)
+<span class="fc" id="L30">    {</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (timeSpan == null)</span>
+        {
+<span class="fc" id="L33">            throw new IllegalArgumentException(&quot;Tijd mag niet null zijn&quot;);</span>
+        }
+<span class="fc" id="L35">        this.subject = subject;</span>
+<span class="fc" id="L36">        this.timeSpan = timeSpan;</span>
+<span class="fc" id="L37">    }</span>
+
     /**
      * haalt de subject op uit het geheugen
+     *
      * @return String subject
      */
-    public String getSubject(){
-<span class="fc" id="L34">        return subject;</span>
+    public String getSubject()
+    {
+<span class="fc" id="L46">        return subject;</span>
     }
-    
+
     /**
      * geeft aan van wanneer tot wanneer een vergadering is
+     *
      * @return timeSpan ITimepan
      */
-    public ITimeSpan getTimeSpan(){
-<span class="nc" id="L42">        return null;</span>
+    public ITimeSpan getTimeSpan()
+    {
+<span class="fc" id="L56">        return timeSpan;</span>
     }
-    
+
     /**
      * geeft een lijst van uitgenodigden contacten
+     *
      * @return
      */
-    public Iterator&lt;Contact&gt; invitees (){
-<span class="nc" id="L50">        return contacts.iterator();</span>
+    public Iterator&lt;Contact&gt; invitees()
+    {
+<span class="fc" id="L66">        return contacts.iterator();</span>
     }
-    
+
     /**
      * voegt een contact toe
+     *
      * @param c
      * @return een boolean die aangeeft of het toevoegen gelukt is
      */
-    public boolean addContact (Contact c){
-<span class="nc" id="L59">        return false;</span>
+    public boolean addContact(Contact c)
+    {
+<span class="fc" id="L77">        boolean result = false;</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (c != null)</span>
+        {
+<span class="fc" id="L80">            boolean already = false;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">            for (Contact contact : contacts)</span>
+            {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">                if (contact.equals(c))</span>
+                {
+<span class="fc" id="L85">                    already = true;</span>
+<span class="fc" id="L86">                    break;</span>
+                }
+<span class="fc" id="L88">            }</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">            if (!already)</span>
+            {
+<span class="fc" id="L91">                boolean conflict = false;</span>
+
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">                while (c.appointments().hasNext())</span>
+                {
+<span class="nc" id="L95">                    Appointment appointment = c.appointments().next();</span>
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">                    if (appointment.timeSpan.intersectionWith(this.getTimeSpan()) != null)</span>
+                    {
+<span class="nc" id="L99">                        conflict = true;</span>
+<span class="nc" id="L100">                        break;</span>
+                    }
+<span class="nc" id="L102">                }</span>
+
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">                if (!conflict)</span>
+                {
+<span class="fc" id="L106">                    contacts.add(c);</span>
+<span class="fc" id="L107">                    result = true;</span>
+                }
+            }
+        }
+<span class="fc" id="L111">        return result;</span>
     }
-    
+
     /**
      * haalt het gespecifieerde contact weg
+     *
      * @param c
      */
-    public void removeContact (Contact c){
-        
-<span class="nc" id="L68">    }</span>
+    public void removeContact(Contact c)
+    {
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">        if (c != null)</span>
+        {
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">            for (Contact contact : contacts)</span>
+            {
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">                if (contact.equals(c))</span>
+                {
+<span class="fc" id="L127">                    contacts.remove(contact);</span>
+<span class="fc" id="L128">                    break;</span>
+                }
+<span class="nc" id="L130">            }</span>
+        }
+<span class="fc" id="L132">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -104,6 +104,7 @@ public class Appointment {
                 if (!conflict)
                 {
                     contacts.add(c);
+                    result = true;
                 }
             }
         }
