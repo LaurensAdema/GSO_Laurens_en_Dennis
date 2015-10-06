@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="nl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Appointment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;UnittestenTime&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">deel2</a> &gt; <span class="el_source">Appointment.java</span></div><h1>Appointment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package deel2;
+
+import fontys.time.ITimeSpan;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ *
+ * @author dennis
+ */
+public class Appointment {
+    private String subject;
+    private List&lt;Contact&gt; contacts;
+    
+    /**
+     * maakt een nieuwe appointment aan
+     * @param subject
+     * @param timeSpan
+     */
+<span class="fc" id="L25">    public Appointment(String subject, ITimeSpan timeSpan){</span>
+        
+<span class="fc" id="L27">    }</span>
+    
+    /**
+     * haalt de subject op uit het geheugen
+     * @return String subject
+     */
+    public String getSubject(){
+<span class="fc" id="L34">        return subject;</span>
+    }
+    
+    /**
+     * geeft aan van wanneer tot wanneer een vergadering is
+     * @return timeSpan ITimepan
+     */
+    public ITimeSpan getTimeSpan(){
+<span class="nc" id="L42">        return null;</span>
+    }
+    
+    /**
+     * geeft een lijst van uitgenodigden contacten
+     * @return
+     */
+    public Iterator&lt;Contact&gt; invitees (){
+<span class="nc" id="L50">        return contacts.iterator();</span>
+    }
+    
+    /**
+     * voegt een contact toe
+     * @param c
+     * @return een boolean die aangeeft of het toevoegen gelukt is
+     */
+    public boolean addContact (Contact c){
+<span class="nc" id="L59">        return false;</span>
+    }
+    
+    /**
+     * haalt het gespecifieerde contact weg
+     * @param c
+     */
+    public void removeContact (Contact c){
+        
+<span class="nc" id="L68">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
