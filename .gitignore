@@ -66,6 +66,7 @@ $RECYCLE.BIN/
 */nbactions.xml
 */nb-configuration.xml
 */.nb-gradle/
+*/.jacocoverage/
 
 nbproject/private/
 build/
@@ -75,6 +76,7 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 .nb-gradle/
+.jacocoverage/
 
 UnittestenTime/nbproject/private/
 UnittestenTime/build/
@@ -84,3 +86,4 @@ UnittestenTime/nbdist/
 UnittestenTime/nbactions.xml
 UnittestenTime/nb-configuration.xml
 UnittestenTime/.nb-gradle/
+UnittestenTime/.jacocoverage/
