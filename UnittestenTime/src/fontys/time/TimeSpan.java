@@ -148,4 +148,12 @@ public class TimeSpan implements ITimeSpan {
         
         return this.getBeginTime().equals(that.getBeginTime()) && this.getEndTime().equals(that.getEndTime());
     }
+
+    @Override
+    public String toString()
+    {
+        return "TimeSpan{" + "bt=" + bt + ", et=" + et + '}';
+    }
+    
+    
 }

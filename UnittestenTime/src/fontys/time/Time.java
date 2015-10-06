@@ -143,4 +143,11 @@ public class Time implements ITime {
         }
         return false;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Time{" +getYear()+"-"+getMonth()+"-"+getDay()+", "+getHours()+":"+getMinutes()+ "}";
+    }
+    
 }
