@@ -46,12 +46,9 @@ public class Contact {
      */
     boolean addAppointment(Appointment a)
     {
-        for (Appointment appointment : appointments)
+        if (!appointments.stream().noneMatch((appointment) -> (appointment.getTimeSpan().intersectionWith(a.getTimeSpan()) != null)))
         {
-            if (appointment.getTimeSpan().intersectionWith(a.getTimeSpan()) == null)
-            {
-                return false;
-            }
+            return false;
         }
         appointments.add(a);
         return true;
