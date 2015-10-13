@@ -36,11 +36,11 @@ public class AEXBanner extends Application {
         Font font = new Font("Arial", HEIGHT);
         text = new Text();
         text.setFont(font);
-        text.setFill(Color.BLACK);
+        text.setFill(Color.GREENYELLOW);
 
         Pane root = new Pane();
         root.getChildren().add(text);
-        Scene scene = new Scene(root, WIDTH, HEIGHT);
+        Scene scene = new Scene(root, WIDTH, HEIGHT, Color.BLACK);
 
         primaryStage.setTitle("AEX banner");
         primaryStage.setScene(scene);
