@@ -3,6 +3,7 @@
  */
 package aex.client;
 
+import java.awt.SystemColor;
 import java.util.Timer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -11,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 
 public class AEXBanner extends Application {
@@ -57,6 +59,11 @@ public class AEXBanner extends Application {
                 {
                     // calculate new location of text
                     // TODO
+                    textPosition-=5;
+                    if (textPosition<0-WIDTH)
+                    {
+                        textPosition = WIDTH;
+                    }
                     text.relocate(textPosition, 0);
                     prevUpdate = now;
                 }
