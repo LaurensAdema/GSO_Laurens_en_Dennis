@@ -38,7 +38,7 @@ public class BannerController {
         for (IFonds fonds : effectenbeurs.getKoersen())
         {
             koersen.append(fonds.getNaam());
-            koersen.append(" ");
+            koersen.append(": ");
             koersen.append(String.format("%.2f", fonds.getKoers()));
             koersen.append(" ");
         }

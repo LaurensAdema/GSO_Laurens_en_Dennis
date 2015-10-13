@@ -80,6 +80,10 @@ public class AEXBanner extends Application {
             }
         };
         animationTimer.start();
+        
+        primaryStage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
     }
 
     public void setKoersen(String koersen)
@@ -92,6 +96,5 @@ public class AEXBanner extends Application {
     public void stop()
     {
         animationTimer.stop();
-        controller.stop();
     }
 }

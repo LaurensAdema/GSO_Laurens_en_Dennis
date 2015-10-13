@@ -8,7 +8,7 @@ import java.util.TimerTask;
 
 public class MockEffectenbeurs implements IEffectenbeurs {
 
-    private static final String[] COMPANIES_STRINGS =
+    private final String[] COMPANIES_STRINGS =
     {
         "Shell", "Honig"
     };
@@ -44,5 +44,4 @@ public class MockEffectenbeurs implements IEffectenbeurs {
             }
         }, 0, 3000);
     }
-
 }
