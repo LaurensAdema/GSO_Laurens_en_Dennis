@@ -5,6 +5,7 @@ package aex.client;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.application.Platform;
 
 public class BannerController {
 
@@ -25,7 +26,7 @@ public class BannerController {
             @Override
             public void run()
             {
-                banner.setKoersen(BannerString());
+                Platform.runLater(new Runnable() {public void run() {banner.setKoersen(BannerString());}});
             }
         }, 0, 2000);
     }
