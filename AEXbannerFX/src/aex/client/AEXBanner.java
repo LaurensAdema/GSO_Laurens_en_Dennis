@@ -62,7 +62,7 @@ public class AEXBanner extends Application {
                     textPosition -= 5;
                     if (textPosition < 0 - textLength)
                     {
-                        textPosition = WIDTH;
+                        textPosition = 0;
                     }
                     text.relocate(textPosition, 0);
                     prevUpdate = now;
@@ -73,7 +73,7 @@ public class AEXBanner extends Application {
             public void start()
             {
                 prevUpdate = System.nanoTime();
-                textPosition = WIDTH;
+                textPosition = 0;
                 text.relocate(textPosition, 0);
                 setKoersen("Nothing to display");
                 super.start();
@@ -90,6 +90,7 @@ public class AEXBanner extends Application {
     {
         text.setText(koersen);
         textLength = text.getLayoutBounds().getWidth();
+        text.setText(koersen+" "+koersen);
     }
 
     @Override
