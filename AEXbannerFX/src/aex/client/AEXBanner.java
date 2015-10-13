@@ -1,5 +1,5 @@
 /**
- * ***** AEXBanner.java  **************************************
+ * ***** AEXBanner.java **************************************
  */
 package aex.client;
 
@@ -59,8 +59,8 @@ public class AEXBanner extends Application {
                 {
                     // calculate new location of text
                     // TODO
-                    textPosition-=5;
-                    if (textPosition<0-WIDTH)
+                    textPosition -= 5;
+                    if (textPosition < 0 - textLength)
                     {
                         textPosition = WIDTH;
                     }
