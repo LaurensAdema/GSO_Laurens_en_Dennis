@@ -1,9 +1,10 @@
 /**
- * ***** BannerController.java  **********************************
+ * ***** BannerController.java **********************************
  */
 package aex.client;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class BannerController {
 
@@ -13,13 +14,40 @@ public class BannerController {
 
     public BannerController(AEXBanner banner)
     {
-
         this.banner = banner;
         this.effectenbeurs = new MockEffectenbeurs();
 
         // Start polling timer: update banner every two seconds
         pollingTimer = new Timer();
         // TODO
+        pollingTimer.schedule(new TimerTask() {
+
+            @Override
+            public void run()
+            {
+                banner.setKoersen(BannerString());
+            }
+        }, 2000);
+    }
+
+    public String BannerString()
+    {
+        StringBuilder koersen = new StringBuilder();
+
+        for (IFonds fonds : effectenbeurs.getKoersen())
+        {
+            koersen.append(fonds.getNaam());
+            koersen.append(" ");
+            koersen.append(fonds.getKoers());
+            koersen.append(" ");
+        }
+
+        if (koersen.length() < 1)
+        {
+            koersen.append("Er zijn geen koersen beschikbaar.");
+        }
+
+        return koersen.toString().trim();
     }
 
     // Stop banner controller
@@ -28,5 +56,6 @@ public class BannerController {
         pollingTimer.cancel();
         // Stop simulation timer of effectenbeurs
         // TODO
+        banner.stop();
     }
 }
