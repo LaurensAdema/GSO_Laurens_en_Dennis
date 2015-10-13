@@ -27,7 +27,7 @@ public class BannerController {
             {
                 banner.setKoersen(BannerString());
             }
-        }, 2000);
+        }, 0, 2000);
     }
 
     public String BannerString()
