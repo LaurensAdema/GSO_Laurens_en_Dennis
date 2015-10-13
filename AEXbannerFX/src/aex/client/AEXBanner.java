@@ -36,7 +36,7 @@ public class AEXBanner extends Application {
         Font font = new Font("Arial", HEIGHT);
         text = new Text();
         text.setFont(font);
-        text.setFill(Color.GREENYELLOW);
+        text.setFill(Color.YELLOW);
 
         Pane root = new Pane();
         root.getChildren().add(text);

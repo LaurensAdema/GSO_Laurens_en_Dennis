@@ -39,7 +39,7 @@ public class BannerController {
         {
             koersen.append(fonds.getNaam());
             koersen.append(" ");
-            koersen.append(fonds.getKoers());
+            koersen.append(String.format("%.2f", fonds.getKoers()));
             koersen.append(" ");
         }
 
