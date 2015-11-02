@@ -38,5 +38,13 @@ public class Fonds implements IFonds, Serializable {
     public void changeKoers()
     {
         koers = koers + (Math.random() * 2) - 1;
+        if (koers < 0)
+        {
+            koers = 0.00;
+        }
+        if (koers >= 100)
+        {
+            koers = 99.99;
+        }
     }
 }
