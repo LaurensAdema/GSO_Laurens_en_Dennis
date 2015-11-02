@@ -1,5 +1,6 @@
 package aex.client;
 
+import aex.shared.IEffectenbeurs;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MockEffectenbeurs implements IEffectenbeurs {
+public abstract class MockEffectenbeurs implements IEffectenbeurs {
 
     private final String[] COMPANIES_STRINGS =
     {

@@ -4,7 +4,10 @@
 package aex.client;
 
 import java.awt.SystemColor;
+import java.rmi.RemoteException;
 import java.util.Timer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,6 +19,7 @@ import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 
 public class AEXBanner extends Application {
+
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 100;
     public static final int NANO_TICKS = 20000000;
@@ -26,11 +30,23 @@ public class AEXBanner extends Application {
     private BannerController controller;
     private AnimationTimer animationTimer;
 
+    public static void main(String[] args)
+    {
+        launch();
+    }
+
     @Override
     public void start(Stage primaryStage)
     {
 
-        controller = new BannerController(this);
+        try
+        {
+            controller = new BannerController(this);
+        } catch (RemoteException ex)
+        {
+            System.out.println(ex.getMessage());
+            //Logger.getLogger(AEXBanner.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Font font = new Font("Arial", HEIGHT);
         text = new Text();
@@ -79,8 +95,9 @@ public class AEXBanner extends Application {
             }
         };
         animationTimer.start();
-        
-        primaryStage.setOnCloseRequest(event -> {
+
+        primaryStage.setOnCloseRequest(event ->
+        {
             System.exit(0);
         });
     }
@@ -89,7 +106,7 @@ public class AEXBanner extends Application {
     {
         text.setText(koersen);
         textLength = text.getLayoutBounds().getWidth();
-        text.setText(koersen+" "+koersen);
+        text.setText(koersen + " " + koersen);
     }
 
     @Override

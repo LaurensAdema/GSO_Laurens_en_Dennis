@@ -8,6 +8,7 @@ package aex.server;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -69,5 +70,12 @@ public class RMIServer {
                 System.out.println("Still running");
             }
         }, 5000);
+        Scanner s = new Scanner(System.in);
+            System.out.println("Type stop to stop.");
+            
+            while(!s.nextLine().equals("stop"))
+            {
+                System.out.println("Type stop to stop.");
+            }
     }
 }
