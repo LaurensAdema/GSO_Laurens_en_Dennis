@@ -9,8 +9,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  *
@@ -36,7 +34,7 @@ public class RMIServer {
         // Create registry at port number
         try
         {
-            System.out.println(aex.client.Application.port);
+            System.out.println("Selected port is " + aex.client.Application.port);
             registry = LocateRegistry.createRegistry(aex.client.Application.port);
         } catch (RemoteException ex)
         {
@@ -61,15 +59,6 @@ public class RMIServer {
     {
         RMIServer server = new RMIServer();
         System.out.println("Server gestart");
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-
-            @Override
-            public void run()
-            {
-                System.out.println("Still running");
-            }
-        }, 5000);
         Scanner s = new Scanner(System.in);
             System.out.println("Type stop to stop.");
             
@@ -77,5 +66,6 @@ public class RMIServer {
             {
                 System.out.println("Type stop to stop.");
             }
+            System.exit(0);
     }
 }
