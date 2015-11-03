@@ -11,9 +11,9 @@ import java.util.TimerTask;
 
 public class Effectenbeurs extends UnicastRemoteObject implements IEffectenbeurs {
 
-    private IFonds[] fondsen;
+    private final IFonds[] fondsen;
     private Timer timer;
-    private BasicPublisher publisher;
+    private final BasicPublisher publisher;
 
     public Effectenbeurs() throws RemoteException
     {

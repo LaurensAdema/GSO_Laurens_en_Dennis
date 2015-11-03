@@ -10,7 +10,7 @@ import java.util.TimerTask;
 
 public class Effectenbeurs extends UnicastRemoteObject implements IEffectenbeurs {
 
-    private IFonds[] fondsen;
+    private final IFonds[] fondsen;
     private Timer timer;
 
     public Effectenbeurs() throws RemoteException
@@ -37,9 +37,9 @@ public class Effectenbeurs extends UnicastRemoteObject implements IEffectenbeurs
             public void run()
             {
                 for (IFonds fonds : fondsen)
-            {
-                fonds.changeKoers();
-            }
+                {
+                    fonds.changeKoers();
+                }
             }
         }, 0, 500);
     }

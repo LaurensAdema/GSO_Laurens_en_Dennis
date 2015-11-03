@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 
 /**
  * @author Frank Peeters
- * @version 1.4 Usage of Publisher-interface is removed because this interface is
- * Remote and objects of this class work locally within the same virtual
+ * @version 1.4 Usage of Publisher-interface is removed because this interface
+ * is Remote and objects of this class work locally within the same virtual
  * machine;
  */
 public class BasicPublisher {
@@ -19,7 +19,7 @@ public class BasicPublisher {
      * de listeners die onder de null-String staan geregistreerd zijn listeners
      * die op alle properties zijn geabonneerd
      */
-    private HashMap<String, Set<IRemotePropertyListener>> listenersTable;
+    private final HashMap<String, Set<IRemotePropertyListener>> listenersTable;
     /**
      * als een listener zich bij een onbekende property registreert wordt de
      * lijst met bekende properties in een RuntimeException meegegeven (zie
@@ -35,10 +35,12 @@ public class BasicPublisher {
      *
      * @param properties
      */
-    public BasicPublisher(String[] properties) {
+    public BasicPublisher(String[] properties)
+    {
         listenersTable = new HashMap<>();
         listenersTable.put(null, new HashSet<>());
-        for (String s : properties) {
+        for (String s : properties)
+        {
             listenersTable.put(s, new HashSet<>());
         }
         setPropertiesString();
@@ -53,7 +55,8 @@ public class BasicPublisher {
      * properties; property moet wel een eigenschap zijn waarop je je kunt
      * abonneren
      */
-    public void addListener(IRemotePropertyListener listener, String property) {
+    public void addListener(IRemotePropertyListener listener, String property)
+    {
         checkInBehalfOfProgrammer(property);
 
         listenersTable.get(property).add(listener);
@@ -67,16 +70,21 @@ public class BasicPublisher {
      * @param property mag null zijn, dan worden alle abonnementen van listener
      * opgezegd
      */
-    public void removeListener(IRemotePropertyListener listener, String property) {
-        if (property != null) {
+    public void removeListener(IRemotePropertyListener listener, String property)
+    {
+        if (property != null)
+        {
             Set<IRemotePropertyListener> propertyListeners = listenersTable.get(property);
-            if (propertyListeners != null) {
+            if (propertyListeners != null)
+            {
                 propertyListeners.remove(listener);
                 listenersTable.get(null).remove(listener);
             }
-        } else { //property == null, dus alle abonnementen van listener verwijderen
+        } else
+        { //property == null, dus alle abonnementen van listener verwijderen
             Set<String> keyset = listenersTable.keySet();
-            for (String key : keyset) {
+            for (String key : keyset)
+            {
                 listenersTable.get(key).remove(listener);
             }
         }
@@ -94,27 +102,34 @@ public class BasicPublisher {
      * (mag null zijn)
      * @param newValue nieuwe waarde van de property van de publisher
      */
-    public void inform(Object source, String property, Object oldValue, Object newValue) {
+    public void inform(Object source, String property, Object oldValue, Object newValue)
+    {
         checkInBehalfOfProgrammer(property);
 
         Set<IRemotePropertyListener> alertable;
         alertable = listenersTable.get(property);
-        if (property != null) {
+        if (property != null)
+        {
             alertable.addAll(listenersTable.get(null));
-        } else {
+        } else
+        {
             Set<String> keyset = listenersTable.keySet();
-            for (String key : keyset) {
+            for (String key : keyset)
+            {
                 alertable.addAll(listenersTable.get(key));
             }
         }
 
-        for (IRemotePropertyListener listener : alertable) {
+        for (IRemotePropertyListener listener : alertable)
+        {
 
             PropertyChangeEvent evt = new PropertyChangeEvent(
                     source, property, oldValue, newValue);
-            try {
+            try
+            {
                 listener.propertyChange(evt);
-            } catch (RemoteException ex) {
+            } catch (RemoteException ex)
+            {
                 removeListener(listener, null);
                 Logger.getLogger(BasicPublisher.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -129,16 +144,19 @@ public class BasicPublisher {
      *
      * @param property niet de lege string
      */
-    public void addProperty(String property) {
-        if (property.equals("")) {
+    public void addProperty(String property)
+    {
+        if (property.equals(""))
+        {
             throw new RuntimeException("a property cannot be an empty string");
         }
 
-        if (listenersTable.containsKey(property)) {
+        if (listenersTable.containsKey(property))
+        {
             return;
         }
 
-        listenersTable.put(property, new HashSet<IRemotePropertyListener>());
+        listenersTable.put(property, new HashSet<>());
         setPropertiesString();
     }
 
@@ -150,15 +168,20 @@ public class BasicPublisher {
      *
      * @param property is geregistreerde property bij deze basicpublisher
      */
-    public void removeProperty(String property) {
+    public void removeProperty(String property)
+    {
         checkInBehalfOfProgrammer(property);
 
-        if (property != null) {
+        if (property != null)
+        {
             listenersTable.remove(property);
-        } else {
+        } else
+        {
             Set<String> keyset = listenersTable.keySet();
-            for (String key : keyset) {
-                if (key != null) {
+            for (String key : keyset)
+            {
+                if (key != null)
+                {
                     listenersTable.remove(key);
                 }
             }
@@ -166,12 +189,14 @@ public class BasicPublisher {
         setPropertiesString();
     }
 
-    private void setPropertiesString() {
+    private void setPropertiesString()
+    {
         StringBuilder sb = new StringBuilder();
         sb.append("{ ");
         Iterator<String> it = listenersTable.keySet().iterator();
         sb.append(it.next());
-        while (it.hasNext()) {
+        while (it.hasNext())
+        {
             sb.append(", ").append(it.next());
         }
         sb.append(" }");
@@ -179,8 +204,10 @@ public class BasicPublisher {
     }
 
     private void checkInBehalfOfProgrammer(String property)
-            throws RuntimeException {
-        if (!listenersTable.containsKey(property)) {
+            throws RuntimeException
+    {
+        if (!listenersTable.containsKey(property))
+        {
             throw new RuntimeException("property " + property + " is not a "
                     + "published property, please make a choice out of: "
                     + propertiesString);
@@ -191,7 +218,8 @@ public class BasicPublisher {
      *
      * @return alle properties inclusief de null-property
      */
-    public Iterator<String> getProperties() {
+    public Iterator<String> getProperties()
+    {
         return listenersTable.keySet().iterator();
     }
 }

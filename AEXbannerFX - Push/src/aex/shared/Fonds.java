@@ -5,7 +5,6 @@
  */
 package aex.shared;
 
-import aex.shared.IFonds;
 import java.io.Serializable;
 
 /**

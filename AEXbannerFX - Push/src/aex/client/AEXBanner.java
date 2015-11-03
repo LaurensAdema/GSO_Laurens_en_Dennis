@@ -3,11 +3,7 @@
  */
 package aex.client;
 
-import java.awt.SystemColor;
 import java.rmi.RemoteException;
-import java.util.Timer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 
 public class AEXBanner extends Application {
@@ -45,7 +40,6 @@ public class AEXBanner extends Application {
         } catch (RemoteException ex)
         {
             System.out.println(ex.getMessage());
-            //Logger.getLogger(AEXBanner.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         Font font = new Font("Arial", HEIGHT);
@@ -72,8 +66,6 @@ public class AEXBanner extends Application {
                 long lag = now - prevUpdate;
                 if (lag >= NANO_TICKS)
                 {
-                    // calculate new location of text
-                    // TODO
                     textPosition -= 5;
                     if (textPosition < 0 - textLength)
                     {

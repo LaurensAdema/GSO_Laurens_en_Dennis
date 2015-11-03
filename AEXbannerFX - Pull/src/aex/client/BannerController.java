@@ -72,7 +72,8 @@ public class BannerController {
         StringBuilder koersen = new StringBuilder();
         if (effectenbeurs != null)
         {
-            try {
+            try
+            {
                 for (IFonds fonds : effectenbeurs.getKoersen())
                 {
                     koersen.append(fonds.getNaam());
@@ -80,14 +81,15 @@ public class BannerController {
                     koersen.append(String.format("%.2f", fonds.getKoers()));
                     koersen.append(" ");
                 }
-                
+
                 if (koersen.length() < 1)
                 {
                     koersen.append("Er zijn geen koersen beschikbaar.");
                 }
-                
+
                 return koersen.toString().trim();
-            } catch (RemoteException ex) {
+            } catch (RemoteException ex)
+            {
                 Logger.getLogger(BannerController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

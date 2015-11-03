@@ -3,8 +3,6 @@
  */
 package aex.client;
 
-import java.awt.SystemColor;
-import java.util.Timer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,10 +10,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 
 public class AEXBanner extends Application {
+
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 100;
     public static final int NANO_TICKS = 20000000;
@@ -79,8 +77,9 @@ public class AEXBanner extends Application {
             }
         };
         animationTimer.start();
-        
-        primaryStage.setOnCloseRequest(event -> {
+
+        primaryStage.setOnCloseRequest(event ->
+        {
             System.exit(0);
         });
     }
@@ -89,7 +88,7 @@ public class AEXBanner extends Application {
     {
         text.setText(koersen);
         textLength = text.getLayoutBounds().getWidth();
-        text.setText(koersen+" "+koersen);
+        text.setText(koersen + " " + koersen);
     }
 
     @Override

@@ -2,9 +2,9 @@ package aex.shared;
 
 public interface IFonds {
 
-	public String getNaam();
+    public String getNaam();
 
-	public double getKoers();
-        
-        public void changeKoers();
+    public double getKoers();
+
+    public void changeKoers();
 }

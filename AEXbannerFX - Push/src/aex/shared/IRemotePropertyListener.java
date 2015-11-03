@@ -10,11 +10,12 @@ import java.util.EventListener;
  * @author Gebruiker
  */
 public interface IRemotePropertyListener extends EventListener, Remote {
-    
+
     /**
      * Notify all listeners subscribed to a property about a change
+     *
      * @param evt property change details
-     * @throws RemoteException 
+     * @throws RemoteException
      */
     void propertyChange(PropertyChangeEvent evt) throws RemoteException;
 }
