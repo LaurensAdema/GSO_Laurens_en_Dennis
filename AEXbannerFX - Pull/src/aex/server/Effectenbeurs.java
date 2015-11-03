@@ -1,8 +1,8 @@
 package aex.server;
 
-import aex.client.Fonds;
-import aex.client.IEffectenbeurs;
-import aex.client.IFonds;
+import aex.shared.Fonds;
+import aex.shared.IEffectenbeurs;
+import aex.shared.IFonds;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Timer;

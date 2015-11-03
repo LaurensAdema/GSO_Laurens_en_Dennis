@@ -3,6 +3,7 @@
  */
 package aex.client;
 
+import aex.shared.IFonds;
 import aex.server.Effectenbeurs;
 import aex.shared.IEffectenbeurs;
 import aex.shared.IRemotePropertyListener;

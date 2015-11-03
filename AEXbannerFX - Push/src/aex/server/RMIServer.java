@@ -60,12 +60,12 @@ public class RMIServer {
         RMIServer server = new RMIServer();
         System.out.println("Server gestart");
         Scanner s = new Scanner(System.in);
+        System.out.println("Type stop to stop.");
+
+        while (!s.nextLine().equals("stop"))
+        {
             System.out.println("Type stop to stop.");
-            
-            while(!s.nextLine().equals("stop"))
-            {
-                System.out.println("Type stop to stop.");
-            }
-            System.exit(0);
+        }
+        System.exit(0);
     }
 }

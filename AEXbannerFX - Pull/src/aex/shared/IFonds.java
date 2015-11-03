@@ -1,4 +1,4 @@
-package aex.client;
+package aex.shared;
 
 public interface IFonds {
 

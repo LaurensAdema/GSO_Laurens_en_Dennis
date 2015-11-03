@@ -1,8 +1,8 @@
 package aex.server;
 
-import aex.client.Fonds;
+import aex.shared.Fonds;
 import aex.shared.IEffectenbeurs;
-import aex.client.IFonds;
+import aex.shared.IFonds;
 import aex.shared.IRemotePropertyListener;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

@@ -3,6 +3,8 @@
  */
 package aex.client;
 
+import aex.shared.IFonds;
+import aex.shared.IEffectenbeurs;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -22,7 +24,6 @@ public class BannerController {
     public BannerController(AEXBanner banner)
     {
         this.banner = banner;
-        this.effectenbeurs = new MockEffectenbeurs();
 
         // Start polling timer: update banner every two seconds
         pollingTimer = new Timer();
