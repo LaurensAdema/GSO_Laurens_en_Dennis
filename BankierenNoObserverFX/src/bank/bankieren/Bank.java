@@ -23,6 +23,7 @@ public class Bank implements IBank {
 		this.name = name;	
 	}
 
+        synchronized 
 	public int openRekening(String name, String city) {
 		if (name.equals("") || city.equals(""))
 			return -1;
@@ -48,6 +49,7 @@ public class Bank implements IBank {
 		return accounts.get(nr);
 	}
 
+        synchronized 
 	public boolean maakOver(int source, int destination, Money money)
 			throws NumberDoesntExistException {
 		if (source == destination)
