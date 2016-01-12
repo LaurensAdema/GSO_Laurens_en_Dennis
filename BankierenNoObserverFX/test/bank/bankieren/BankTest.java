@@ -88,7 +88,7 @@ public class BankTest {
     public void testMaakOver() throws Exception
     {
         System.out.println("maakOver");
-        Money money = new Money(1000, "Euro");
+        Money money = new Money(1000, "€");
         Bank instance = new Bank("test");
         int source = instance.openRekening("bob", "tilburg");
         int destination = instance.openRekening("dave", "tilburg");
