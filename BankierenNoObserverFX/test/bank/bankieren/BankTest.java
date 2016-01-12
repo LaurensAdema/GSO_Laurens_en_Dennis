@@ -74,7 +74,7 @@ public class BankTest {
         }
         try
         {
-            IRekening result = instance.getRekening(nr + 1);
+            IRekening result = instance.getRekening(nr);
         } catch (Exception ex)
         {
             assertFalse(true);
