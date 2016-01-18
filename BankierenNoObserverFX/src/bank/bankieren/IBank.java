@@ -1,12 +1,13 @@
 package bank.bankieren;
 
+import aex.shared.IRemotePublisher;
 import fontys.util.*;
 
 /**
  * @author 871059
  * 
  */
-public interface IBank {
+public interface IBank extends IRemotePublisher {
 
     /**
      * creatie van een nieuwe bankrekening met een identificerend rekeningnummer; 
