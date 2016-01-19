@@ -58,28 +58,34 @@ public class BankierSessieController extends UnicastRemoteObject implements Init
     private IBalie balie;
     private IBankiersessie sessie;
 
-    public BankierSessieController() throws RemoteException {
+    public BankierSessieController() throws RemoteException
+    {
     }
 
-    public void setApp(BankierClient application, IBalie balie, IBankiersessie sessie) {
+    public void setApp(BankierClient application, IBalie balie, IBankiersessie sessie)
+    {
         this.balie = balie;
         this.sessie = sessie;
         this.application = application;
 
-        try {
+        try
+        {
             sessie.setChangeListener(this);
-            setRekening(sessie.getRekening());
-        } catch (InvalidSessionException ex) {
+            updateRekening(sessie.getRekening());
+        } catch (InvalidSessionException ex)
+        {
             taMessage.setText("bankiersessie is verlopen");
             Logger.getLogger(BankierSessieController.class.getName()).log(Level.SEVERE, null, ex);
 
-        } catch (RemoteException ex) {
+        } catch (RemoteException ex)
+        {
             taMessage.setText("verbinding verbroken");
             Logger.getLogger(BankierSessieController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void setRekening(IRekening rekening) {
+    private void updateRekening(IRekening rekening)
+    {
         tfAccountNr.setText(rekening.getNr() + "");
         tfBalance.setText(rekening.getSaldo() + "");
         tfNameCity.setText(rekening.getEigenaar().getNaam() + " te " + rekening.getEigenaar().getPlaats());
@@ -89,40 +95,53 @@ public class BankierSessieController extends UnicastRemoteObject implements Init
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
     }
 
     @FXML
-    private void logout(ActionEvent event) {
-        try {
+    private void logout(ActionEvent event)
+    {
+        try
+        {
             sessie.logUit();
             application.gotoLogin(balie, "");
-        } catch (RemoteException e) {
+        } catch (RemoteException e)
+        {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void transfer(ActionEvent event) {
-        try {
+    private void transfer(ActionEvent event)
+    {
+        try
+        {
             int from = Integer.parseInt(tfAccountNr.getText());
             int to = Integer.parseInt(tfToAccountNr.getText());
-            if (from == to) {
+            if (from == to)
+            {
                 taMessage.setText("can't transfer money to your own account");
             }
             long centen = (long) (Double.parseDouble(tfAmount.getText()) * 100);
             sessie.maakOver(to, new Money(centen, Money.EURO));
-        } catch (RemoteException e1) {
+        } catch (RemoteException e1)
+        {
             e1.printStackTrace();
             taMessage.setText("verbinding verbroken");
-        } catch (NumberDoesntExistException | InvalidSessionException e1) {
+        } catch (NumberDoesntExistException | InvalidSessionException e1)
+        {
             e1.printStackTrace();
             taMessage.setText(e1.getMessage());
         }
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent propertyChangeEvent) throws RemoteException {
-        setRekening((IRekening) propertyChangeEvent.getNewValue());
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) throws RemoteException
+    {
+        if (sessie.isGeldig())
+        {
+            updateRekening((IRekening) propertyChangeEvent.getNewValue());
+        }
     }
 }

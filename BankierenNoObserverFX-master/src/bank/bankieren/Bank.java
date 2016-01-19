@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
-public class Bank extends BasicPublisher implements IBank, ISecureBank, AutoCloseable {
+public class Bank extends BasicPublisher implements IBank, IMutateBank, AutoCloseable {
 
     private final Map<Integer, IRekeningTbvBank> accounts = new HashMap<>();
     private final Collection<IKlant> clients = new ArrayList<>();
