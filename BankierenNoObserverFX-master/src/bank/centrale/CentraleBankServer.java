@@ -12,6 +12,7 @@ public class CentraleBankServer {
     {
         try
         {
+            System.setProperty("java.rmi.server.hostname", "145.93.81.243");
             CentraleBank centraleBank = new CentraleBank();
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.rebind("centraleBank", centraleBank);
