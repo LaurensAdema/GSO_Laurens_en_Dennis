@@ -86,7 +86,8 @@ public class BalieServer extends Application {
     }
 
     private ICentraleBank getCentraleBank() throws RemoteException, NotBoundException, MalformedURLException {
-        return (ICentraleBank) Naming.lookup("rmi://localhost:12345/centralbank");
+        Registry centraleBankReg = LocateRegistry.getRegistry("145.93.81.243", 1099);
+        return (ICentraleBank) centraleBankReg.lookup("centraleBank");
     }
 
     public void gotoBankSelect() {
